@@ -77,15 +77,106 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Download button functionality
+    // Download functionality
+    function handleDownload(e) {
+        e.preventDefault();
+        
+        // Download URLs
+        const macDownloadUrl = 'https://github.com/igmcdowell/WriteTime-releases/releases/download/v0.0.20/WriteTime-Mac-0.0.31-Installer.dmg';
+        const windowsDownloadUrl = 'https://github.com/igmcdowell/WriteTime-releases/releases/download/v0.0.20/WriteTime-Windows-0.0.31-Setup.exe';
+        
+        // Detect platform
+        const userAgent = navigator.userAgent.toLowerCase();
+        const isMac = userAgent.includes('mac');
+        const isWindows = userAgent.includes('win');
+        
+        if (isMac) {
+            window.location.href = macDownloadUrl;
+        } else if (isWindows) {
+            window.location.href = windowsDownloadUrl;
+        } else {
+            // Show both options for other platforms
+            const downloadChoice = confirm('Choose your platform:\nOK for Mac\nCancel for Windows');
+            if (downloadChoice) {
+                window.location.href = macDownloadUrl;
+            } else {
+                window.location.href = windowsDownloadUrl;
+            }
+        }
+    }
+    
+    // Platform detection and UI updates
+    const userAgent = navigator.userAgent.toLowerCase();
+    const isMac = userAgent.includes('mac');
+    const isWindows = userAgent.includes('win');
+    
+    // Update button text and secondary link based on platform
     const downloadButtons = document.querySelectorAll('.btn-primary');
+    const platformInfo = document.querySelector('.platform-info');
+    const secondaryLinks = document.querySelectorAll('.secondary-download');
+    
+    let primaryPlatform, secondaryPlatform, primaryUrl, secondaryUrl;
+    
+    if (isMac) {
+        primaryPlatform = 'Download for Mac';
+        secondaryPlatform = 'Windows';
+        primaryUrl = 'https://github.com/igmcdowell/WriteTime-releases/releases/download/v0.0.20/WriteTime-Mac-0.0.31-Installer.dmg';
+        secondaryUrl = 'https://github.com/igmcdowell/WriteTime-releases/releases/download/v0.0.20/WriteTime-Windows-0.0.31-Setup.exe';
+    } else if (isWindows) {
+        primaryPlatform = 'Download for Windows';
+        secondaryPlatform = 'Mac';
+        primaryUrl = 'https://github.com/igmcdowell/WriteTime-releases/releases/download/v0.0.20/WriteTime-Windows-0.0.31-Setup.exe';
+        secondaryUrl = 'https://github.com/igmcdowell/WriteTime-releases/releases/download/v0.0.20/WriteTime-Mac-0.0.31-Installer.dmg';
+    } else {
+        // Default to Mac for unknown platforms
+        primaryPlatform = 'Download for Mac';
+        secondaryPlatform = 'Windows';
+        primaryUrl = 'https://github.com/igmcdowell/WriteTime-releases/releases/download/v0.0.20/WriteTime-Mac-0.0.31-Installer.dmg';
+        secondaryUrl = 'https://github.com/igmcdowell/WriteTime-releases/releases/download/v0.0.20/WriteTime-Windows-0.0.31-Setup.exe';
+    }
+    
+    // Update primary download buttons
     downloadButtons.forEach(button => {
+        button.textContent = primaryPlatform;
         button.addEventListener('click', function(e) {
             e.preventDefault();
-            // For now, just show an alert since we don't have the actual download link
-            alert('Beta download will be available soon! Check back for updates.');
+            window.location.href = primaryUrl;
         });
     });
+    
+    // Update platform info text
+    if (platformInfo) {
+        const platformText = platformInfo.querySelector('.platform-text');
+        if (platformText) {
+            platformText.innerHTML = `Available for macOS and Windows • <a href="${secondaryUrl}" class="secondary-download">Download for ${secondaryPlatform}</a>`;
+        }
+    }
+    
+    // Handle secondary download links
+    function setupSecondaryLinks() {
+        const newSecondaryLinks = document.querySelectorAll('.secondary-download');
+        newSecondaryLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = secondaryUrl;
+            });
+        });
+    }
+    
+    // Set up secondary links initially and after any updates
+    setupSecondaryLinks();
+    
+    // Make CTA card clickable
+    const ctaCard = document.querySelector('.cta-card');
+    if (ctaCard) {
+        ctaCard.addEventListener('click', function(e) {
+            // Don't trigger if clicking on interactive elements within the card
+            if (e.target.tagName === 'BUTTON' || e.target.closest('button')) {
+                return;
+            }
+            handleDownload(e);
+        });
+    }
     
     // Theme Carousel Functionality
     let currentTheme = 0;

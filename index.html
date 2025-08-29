@@ -60,25 +60,40 @@
                 <div class="beta-ribbon">
                   <span>FREE BETA</span>
                 </div>
-                <div class="price-comparison">
-                  <span class="original-price">$59</span>
-                  <span class="current-price">FREE</span>
-                </div>
-
-                <button class="btn btn-primary btn-large">Get WriteTime</button>
-                <div class="urgency-text">
-                  <i data-lucide="clock" class="urgency-icon"></i>
-                  <span>Limited time — Beta pricing ends at launch</span>
+                <div class="cta-brand">
+                  <img
+                    src="icon.png"
+                    alt="WriteTime App Icon"
+                    class="cta-icon"
+                  />
+                  <div class="cta-content">
+                    <div class="pricing">
+                      <div class="price-comparison">
+                        <span class="original-price">$59</span>
+                        <span class="current-price">FREE</span>
+                      </div>
+                      <div class="urgency-text">
+                        <i data-lucide="clock" class="urgency-icon"></i>
+                        <span>Limited time Deal</span>
+                      </div>
+                    </div>
+                    <button class="btn btn-primary btn-large">Download</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="hero-visual">
-            <img
-              src="icon.png"
-              alt="WriteTime App Icon"
-              class="app-icon"
-            />
+            <div class="hero-video">
+              <iframe
+                src="https://www.youtube.com/embed/R4EI7Z7j_Ow?vq=hd1080&rel=0&modestbranding=1"
+                title="WriteTime Demo Video"
+                frameborder="0"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                class="demo-video"
+              ></iframe>
+            </div>
           </div>
         </div>
 
@@ -95,18 +110,10 @@
     <!-- Features Section -->
     <section class="features" aria-labelledby="features-title">
       <div class="container">
-        <h2 id="features-title" class="section-title">Everything you need to publish</h2>
+        <h2 id="features-title" class="section-title">
+          Everything you need to publish
+        </h2>
         <div class="features-grid" role="list">
-          <div class="feature-card" role="listitem">
-            <div class="feature-icon" aria-hidden="true">
-              <i data-lucide="pen-tool"></i>
-            </div>
-            <h3>Intuitive Writing</h3>
-            <p>
-              Clean, distraction-free interface designed for long-form writing.
-              Focus on your story, not the software.
-            </p>
-          </div>
           <div class="feature-card" role="listitem">
             <div class="feature-icon" aria-hidden="true">
               <i data-lucide="book-open"></i>
@@ -141,12 +148,65 @@
       </div>
     </section>
 
+    <!-- Writing Interface Showcase -->
+    <section class="writing-showcase" aria-labelledby="writing-showcase-title">
+      <div class="container">
+        <div class="writing-content">
+          <div class="writing-text">
+            <h2 id="writing-showcase-title">Intuitive Writing Experience</h2>
+            <p>
+              WriteTime's clean, distraction-free interface is designed for long-form writing. 
+              No clutter, no distractions – just you and your story. The interface adapts 
+              beautifully to both light and dark themes, ensuring comfortable writing 
+              sessions any time of day.
+            </p>
+            <div class="writing-features">
+              <div class="writing-feature">
+                <i data-lucide="eye" class="writing-feature-icon"></i>
+                <span>Distraction-free interface</span>
+              </div>
+              <div class="writing-feature">
+                <i data-lucide="moon" class="writing-feature-icon"></i>
+                <span>Light & dark themes</span>
+              </div>
+              <div class="writing-feature">
+                <i data-lucide="type" class="writing-feature-icon"></i>
+                <span>Beautiful typography</span>
+              </div>
+            </div>
+          </div>
+          <div class="writing-visual">
+            <div class="writing-screenshot">
+              <a href="screenshots/feature-writing-interface-light.png" target="_blank" class="screenshot-link screenshot-light">
+                <img
+                  src="screenshots/feature-writing-interface-light.png"
+                  alt="WriteTime writing interface in light theme showing 'The Midnight Garden' novel with clean, distraction-free editing"
+                  class="writing-image"
+                />
+              </a>
+              <a href="screenshots/feature-writing-interface-dark.png" target="_blank" class="screenshot-link screenshot-dark">
+                <img
+                  src="screenshots/feature-writing-interface-dark.png"
+                  alt="WriteTime writing interface in dark theme showing 'The Midnight Garden' novel with clean, distraction-free editing"
+                  class="writing-image"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Themes Showcase -->
     <section class="themes" aria-labelledby="themes-title">
       <div class="container">
         <h2 id="themes-title" class="section-title">Choose your theme</h2>
         <div class="themes-carousel">
-          <div class="carousel-container" role="region" aria-label="Theme carousel">
+          <div
+            class="carousel-container"
+            role="region"
+            aria-label="Theme carousel"
+          >
             <div class="carousel-track" aria-live="polite">
               <div class="theme-slide" data-theme="0">
                 <div class="theme-preview hopeless-romantic">
@@ -236,17 +296,29 @@
     <section class="download">
       <div class="container">
         <div class="download-content">
-          <h2>Ready to start writing?</h2>
-          <p>
-            Join the beta and be among the first to experience WriteTime. Your
-            feedback helps shape the future of indie publishing.
-          </p>
+          <div class="download-brand">
+            <img
+              src="icon.png"
+              alt="WriteTime App Icon"
+              class="download-icon"
+            />
+            <div class="download-text">
+              <h2>Ready to start writing?</h2>
+              <p>
+                Available now for Mac and Windows. Join the beta and be among the first to experience WriteTime.
+                Your feedback helps shape the future of indie publishing.
+              </p>
+            </div>
+          </div>
           <div class="download-pricing">
             <div class="price-highlight">
               <span class="strike-price">Usually $59</span>
               <span class="beta-price">FREE in Beta</span>
             </div>
-            <button class="btn btn-primary btn-large">Get WriteTime</button>
+            <button class="btn btn-primary btn-large">Download for Mac & Windows</button>
+            <div class="platform-info">
+              <p class="platform-text">Available for macOS and Windows</p>
+            </div>
             <div class="beta-benefits">
               <div class="benefit-item">
                 <i data-lucide="check-circle"></i>
@@ -263,7 +335,9 @@
             </div>
           </div>
           <div class="system-requirements">
-            <p><strong>System Requirements:</strong> macOS 10.11 or later</p>
+            <p><strong>System Requirements:</strong></p>
+            <p>• macOS 10.11 or later</p>
+            <p>• Windows 10 or later</p>
           </div>
         </div>
       </div>
@@ -275,7 +349,7 @@
         <p>&copy; 2024 WriteTime. Made with ❤️ by an indie developer.</p>
         <p>
           Questions?
-          <a href="mailto:hello@writetime.app">hello@writetime.app</a>
+          <a href="mailto:hello@getwritetime.com">hello@getwritetime.com</a>
         </p>
       </div>
     </footer>

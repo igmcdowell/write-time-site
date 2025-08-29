@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://writetime.app/sitemap.xml
+Sitemap: https://getwritetime.com/sitemap.xml
