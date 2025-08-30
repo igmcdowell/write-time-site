@@ -1,6 +1,10 @@
-# WriteTime Marketing Website
+# WriteTime Website
 
 A single-page marketing website for WriteTime, a Mac app for indie authors to write and publish beautiful EPUBs.
+
+## Attribution
+
+The bulk of the code in this repo was written by Claude Code, directed by Ian McDowell. Note that the WriteTime app itself was painstakingly authored by a human.
 
 ## Features
 
