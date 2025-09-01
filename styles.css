@@ -441,7 +441,7 @@ body {
 /* Scroll Indicator */
 .scroll-indicator {
   position: absolute;
-  bottom: 2rem;
+  bottom: -2rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -1060,16 +1060,14 @@ body {
   position: relative;
   width: 100%;
   max-width: 800px;
+  max-height: 450px;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 20px 40px var(--shadow);
 }
 
-.demo-video {
+.hero-video video {
   width: 100%;
-  height: 450px;
-  border: none;
-  display: block;
 }
 
 /* Download Brand Section */
@@ -1303,10 +1301,6 @@ body {
     font-size: 1.125rem;
   }
 
-  .demo-video {
-    height: 300px;
-  }
-
   .download-brand {
     flex-direction: column;
     text-align: center;
@@ -1328,10 +1322,6 @@ body {
   .epub-gallery {
     grid-template-columns: 1fr;
     gap: 2rem;
-  }
-
-  .scroll-indicator {
-    bottom: 1rem;
   }
 
   .features {
@@ -1436,10 +1426,6 @@ body {
   .hero-subtitle {
     font-size: 1rem;
     line-height: 1.6;
-  }
-
-  .demo-video {
-    height: 250px;
   }
 
   .download-icon {
