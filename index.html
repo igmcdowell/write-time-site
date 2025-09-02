@@ -77,7 +77,7 @@
                         <span>Limited time Deal</span>
                       </div>
                     </div>
-                    <button class="btn btn-primary btn-large">Download</button>
+                    <button class="btn btn-primary btn-large" id="hero-download-btn">Download</button>
                   </div>
                 </div>
               </div>
@@ -330,7 +330,7 @@
               <span class="strike-price">Usually $59</span>
               <span class="beta-price">FREE in Beta</span>
             </div>
-            <button class="btn btn-primary btn-large">
+            <button class="btn btn-primary btn-large" id="main-download-btn">
               Download for Mac & Windows
             </button>
             <div class="platform-info">
@@ -358,5 +358,169 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+      // Download links configuration
+      const DOWNLOAD_LINKS = {
+        mac: 'https://github.com/igmcdowell/WriteTime-releases/releases/download/v0.0.32/WriteTime-Mac-0.0.32-Installer.dmg',
+        windows: 'https://github.com/igmcdowell/WriteTime-releases/releases/download/v0.0.32/WriteTime-Windows-0.0.32-Setup.exe'
+      };
+
+      // Platform detection and download functionality
+      function getPreferredDownload() {
+        const userAgent = navigator.userAgent.toLowerCase();
+        if (userAgent.includes('mac') || userAgent.includes('darwin')) {
+          return { url: DOWNLOAD_LINKS.mac, platform: 'Mac' };
+        } else if (userAgent.includes('win')) {
+          return { url: DOWNLOAD_LINKS.windows, platform: 'Windows' };
+        } else {
+          // Default to Mac for other platforms
+          return { url: DOWNLOAD_LINKS.mac, platform: 'Mac' };
+        }
+      }
+
+      // Show download modal with both options
+      function showDownloadOptions() {
+        const modal = document.createElement('div');
+        modal.className = 'download-modal';
+        modal.innerHTML = `
+          <div class="download-modal-content">
+            <div class="download-modal-header">
+              <h3>Choose your platform</h3>
+              <button class="download-modal-close">&times;</button>
+            </div>
+            <div class="download-options">
+              <a href="${DOWNLOAD_LINKS.mac}" class="download-option mac-download">
+                <div class="download-option-icon">🍎</div>
+                <div class="download-option-text">
+                  <h4>Download for Mac</h4>
+                  <p>macOS 10.11 or later</p>
+                </div>
+              </a>
+              <a href="${DOWNLOAD_LINKS.windows}" class="download-option windows-download">
+                <div class="download-option-icon">🪟</div>
+                <div class="download-option-text">
+                  <h4>Download for Windows</h4>
+                  <p>Windows 10 or later</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        `;
+
+        // Add modal styles
+        const styles = document.createElement('style');
+        styles.textContent = `
+          .download-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            backdrop-filter: blur(4px);
+          }
+          .download-modal-content {
+            background: var(--card-bg, white);
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+          }
+          .download-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+          }
+          .download-modal-header h3 {
+            margin: 0;
+            color: var(--text-primary, black);
+          }
+          .download-modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary, #666);
+          }
+          .download-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+          }
+          .download-option {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border: 2px solid var(--border-color, #e0e0e0);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-primary, black);
+            transition: all 0.2s ease;
+          }
+          .download-option:hover {
+            border-color: var(--accent-color, #007AFF);
+            background: var(--accent-bg, #f0f8ff);
+          }
+          .download-option-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+          }
+          .download-option-text h4 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1.1rem;
+          }
+          .download-option-text p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-secondary, #666);
+          }
+        `;
+        document.head.appendChild(styles);
+        document.body.appendChild(modal);
+
+        // Close modal handlers
+        const closeModal = () => {
+          document.body.removeChild(modal);
+          document.head.removeChild(styles);
+        };
+
+        modal.querySelector('.download-modal-close').addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closeModal();
+        });
+      }
+
+      // Setup download button handlers
+      function setupDownloadButtons() {
+        const downloadButtons = document.querySelectorAll('#hero-download-btn, #main-download-btn');
+        
+        downloadButtons.forEach(button => {
+          button.addEventListener('click', (e) => {
+            e.preventDefault();
+            showDownloadOptions();
+          });
+        });
+
+        // Update platform text
+        const platformText = document.querySelector('.platform-text');
+        if (platformText) {
+          const preferred = getPreferredDownload();
+          platformText.textContent = `Automatically detected: ${preferred.platform}`;
+        }
+      }
+
+      // Initialize when DOM is loaded
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupDownloadButtons);
+      } else {
+        setupDownloadButtons();
+      }
+    </script>
   </body>
 </html>
